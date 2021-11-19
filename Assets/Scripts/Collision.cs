@@ -23,15 +23,12 @@ public class Collision : MonoBehaviour
 
     private void OnCollisionEnter(UnityEngine.Collision collision)
     {
-        if(collision.gameObject.name == "blade")
-        {
-            Debug.Log("I was SLAPPED");
-        }
-        if(collision.gameObject.tag == "Death")
+        if(collision.gameObject.tag == "InnocentPadawon")
         {
             Debug.Log("Twas but a flesh wound");
             count++;
             score.GetComponent<Text>().text = count.ToString();
+            collision.gameObject.tag = "EnlightenedPadawon";
             
         }
     }
