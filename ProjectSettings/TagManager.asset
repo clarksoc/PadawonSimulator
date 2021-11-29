@@ -8,6 +8,7 @@ TagManager:
   - Score
   - InnocentPadawon
   - EnlightenedPadawon
+  - LifeTotal
   layers:
   - Default
   - TransparentFX

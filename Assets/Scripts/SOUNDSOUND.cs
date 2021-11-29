@@ -29,7 +29,7 @@ public class SOUNDSOUND : MonoBehaviour
 
         //Debug.Log((this.rigidBody.velocity.magnitude).ToString() + "\n");
         //Debug.Log((Vector3.Distance(oldPosition, this.rigidBody.position)).ToString() + "\n");
-        Debug.Log(audioSource.volume.ToString() + "\n");
+        //Debug.Log(audioSource.volume.ToString() + "\n");
 
         speed = Vector3.Distance(oldPosition, this.rigidBody.position);
         oldPosition = rigidBody.position;
@@ -56,7 +56,7 @@ public class SOUNDSOUND : MonoBehaviour
             audioSource.volume = 0.255F + speed;
         }
 
-        Debug.Log(audioSource.pitch.ToString() + "\n");
+        //Debug.Log(audioSource.pitch.ToString() + "\n");
 
         //audioSource.pitch = ((Time.deltaTime * startingPitch) / 5);
 

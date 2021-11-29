@@ -8,13 +8,17 @@ public class SpawnPadawan : MonoBehaviour
 
     public Vector3 center;
     public Vector3 size;
-    public float distanceFromPlayer = 2;
+    public float distanceFromPlayer = 2.0f;
     public float spawnTimer = 0f;
     public int childrenCounter = 0;
+    public float RandomDist = 2.0f;
+
+    private GameObject spawnedPadawan;
+
     // Start is called before the first frame update
     void Start()
     {
-        PadawanSpawner();
+        //PadawanSpawner();
     }
 
     // Update is called once per frame
@@ -26,6 +30,7 @@ public class SpawnPadawan : MonoBehaviour
 
         if (spawnTimer >= 3 && childrenCounter < 10)
         {
+
             PadawanSpawner();
             spawnTimer = 0;
             childrenCounter++;
@@ -34,25 +39,19 @@ public class SpawnPadawan : MonoBehaviour
 
     public void PadawanSpawner()
     {
-        float x;
-        float z;
-        bool reroll = false;
-        do
+        float angle = Random.Range(0.0F, 6.28f);
+        float randDist = Random.Range(0, RandomDist);
+        Vector3 location = new Vector3(Mathf.Sin(angle) * (distanceFromPlayer + randDist), 0.0f, Mathf.Cos(angle) * (distanceFromPlayer + randDist));
+        spawnedPadawan = Instantiate(PadawanPrefab, transform.localPosition + location, Quaternion.identity);
+        var chance = Random.Range(0, 2);
+        if (chance == 0)
         {
-            x = Random.Range(-size.x / 2, size.x / 2);
-            z = Random.Range(-size.z / 2, size.z / 2);
-
-            if (x > -distanceFromPlayer && x < distanceFromPlayer)
-                if (z > -distanceFromPlayer && z < distanceFromPlayer)
-                    reroll = true;
-                else
-                    reroll = false;
-            else
-                reroll = false;
-        } while (reroll);
-
-        Vector3 pos = (transform.localPosition + center) + new Vector3(x, (float)0.1, z);
-        Instantiate(PadawanPrefab, pos, Quaternion.identity);
+            spawnedPadawan.AddComponent<MOVEMOVE>();
+        }
+        else
+        {
+            spawnedPadawan.AddComponent<STANDSTAND>();
+        }
     }
 
     private void OnDrawGizmosSelected()
