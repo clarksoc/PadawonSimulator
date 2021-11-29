@@ -12,6 +12,7 @@ public class MOVEMOVE : MonoBehaviour
     GameObject life;
     public int playerLife;
     public GameObject mainCamera;
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,8 @@ public class MOVEMOVE : MonoBehaviour
         target = mainCamera.transform;
         life = GameObject.FindGameObjectWithTag("LifeTotal");
         player = GameObject.FindGameObjectWithTag("Death");
-        
+        audioSource = mainCamera.GetComponent<AudioSource>();
+        Debug.Log(audioSource);
         Debug.Log("Starting Health: " + playerLife);
     }
 
@@ -45,6 +47,7 @@ public class MOVEMOVE : MonoBehaviour
         {
             Debug.Log("Damn shorty you got hit");
             gotHit();
+            audioSource.Play();
         }
     }
 
@@ -53,6 +56,7 @@ public class MOVEMOVE : MonoBehaviour
         if(playerLife > 0)
         {
             Destroy(gameObject);
+
             playerLife--;
             Debug.Log("Life Total: " + playerLife);
             life.GetComponent<Text>().text = playerLife.ToString();
