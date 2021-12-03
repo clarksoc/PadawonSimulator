@@ -12,6 +12,7 @@ public class STANDSTAND : MonoBehaviour
     GameObject life;
     public int playerLife;
     public GameObject mainCamera;
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,7 @@ public class STANDSTAND : MonoBehaviour
         target = mainCamera.transform;
         life = GameObject.FindGameObjectWithTag("LifeTotal");
         player = GameObject.FindGameObjectWithTag("Death");
+        Destroy(gameObject.GetComponent<Rigidbody>());
 
         Debug.Log("Starting Health: " + playerLife);
     }
@@ -29,7 +31,7 @@ public class STANDSTAND : MonoBehaviour
         var forward = Camera.main.transform.forward;
         forward.y = 0.0f;
         //transform.LookAt(target);
-        Vector3 targetPosNoY = new Vector3(target.position.x, 0.0f, target.position.z);
+        Vector3 targetPosNoY = new Vector3(target.position.x, -1.0f, target.position.z);
         transform.LookAt(targetPosNoY);
     }
 

@@ -9,6 +9,7 @@ TagManager:
   - InnocentPadawon
   - EnlightenedPadawon
   - LifeTotal
+  - Spawner
   layers:
   - Default
   - TransparentFX

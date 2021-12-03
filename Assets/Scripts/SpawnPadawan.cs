@@ -28,7 +28,7 @@ public class SpawnPadawan : MonoBehaviour
             PadawanSpawner();*/
         spawnTimer += Time.deltaTime;
 
-        if (spawnTimer >= 3 && childrenCounter < 10)
+        if (spawnTimer >= 3 && childrenCounter < 3)
         {
 
             PadawanSpawner();

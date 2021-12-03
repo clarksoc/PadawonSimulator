@@ -7,11 +7,14 @@ public class KILLKILL : MonoBehaviour
     public SpawnPadawan SpawnPadawan;
     public int lifeTotal;
     AudioSource deathSounds;
+    GameObject spawner;
+
     // Start is called before the first frame update
     void Start()
     {
         lifeTotal = 10;
         deathSounds = GetComponent<AudioSource>();
+        spawner = GameObject.FindGameObjectWithTag("Spawner");
     }
 
     // Update is called once per frame
@@ -25,10 +28,11 @@ public class KILLKILL : MonoBehaviour
         if(collision.collider.tag == "InnocentPadawon")
         {
             deathSounds.Play();
+            spawner.GetComponent<SpawnPadawan>().childrenCounter--;
             Destroy(collision.collider.gameObject, 3);
             Destroy(collision.collider.gameObject.GetComponent<MOVEMOVE>());
             Destroy(collision.collider.gameObject.GetComponent<STANDSTAND>());
-            GetComponent<SpawnPadawan>().childrenCounter--;
+            Destroy(collision.collider.gameObject.GetComponent<Rigidbody>());
         }
     }
 
