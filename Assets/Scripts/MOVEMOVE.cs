@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MOVEMOVE : MonoBehaviour
@@ -14,6 +15,7 @@ public class MOVEMOVE : MonoBehaviour
     public GameObject mainCamera;
     GameObject spawner;
     AudioSource audioSource;
+    GameObject score;
     Animator animator;
     private float distToPlayer = 1.25f;
     bool hit = false;
@@ -52,7 +54,6 @@ public class MOVEMOVE : MonoBehaviour
         transform.LookAt(targetPosNoY);
         if (Vector3.Distance(new Vector3(transform.position.x, 0.0f, transform.position.z), target.position) <= distToPlayer)
         {
-            Debug.Log("Damn shorty you got hit");
             animator.SetBool("inRange", true);
             if (!hit) gotHit();
             
@@ -76,11 +77,15 @@ public class MOVEMOVE : MonoBehaviour
             //Destroy(gameObject);
             StartCoroutine(DelayHit());
             Debug.Log("Life Total: " + playerLife);
+            Debug.Log("Damn shorty you got hit");
             //spawner.GetComponent<SpawnPadawan>().childrenCounter--;
         }
         else
         {
-            //Todo: GameOver
+            score = GameObject.FindGameObjectWithTag("Score");
+            PlayerStats.Kills = int.Parse(score.GetComponent<Text>().text);
+            Debug.Log("Trying to Load EndScene");
+            SceneManager.LoadScene("EndScene");
         }
     }
 

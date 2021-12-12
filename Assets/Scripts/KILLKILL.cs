@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class KILLKILL : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class KILLKILL : MonoBehaviour
     public int lifeTotal;
     AudioSource deathSounds;
     GameObject spawner;
+    GameObject score;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +24,6 @@ public class KILLKILL : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     void OnCollisionEnter(UnityEngine.Collision collision)

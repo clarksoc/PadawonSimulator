@@ -10,6 +10,8 @@ TagManager:
   - EnlightenedPadawon
   - LifeTotal
   - Spawner
+  - SceneChanger
+  - TotalScore
   layers:
   - Default
   - TransparentFX

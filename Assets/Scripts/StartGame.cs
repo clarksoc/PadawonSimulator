@@ -10,4 +10,13 @@ public class StartGame : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+    public void RestartGame()
+    {
+        PlayerStats.Kills = 0;
+        SceneManager.LoadScene("StartScene");
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
